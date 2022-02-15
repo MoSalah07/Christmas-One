@@ -1,0 +1,35 @@
+// Colors 
+$blue: #0097e6;
+$black: #000;
+$white: #fff;
+$light-color: #aaa;
+$light-bg: #0a0a0a;
+$border: .1rem solid rgba(255 255 255 / .2);
+$transition: all .2s linear;
+
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 1rem 3rem;
+    background-color: $blue;
+    color: $white;
+    font-size: 1.8rem;
+    transition: $transition;
+    &:hover {
+        background-color: $white;
+        color: $black;
+    }
+}
+
+.heading {
+    text-align: center;
+    padding-bottom: 3rem;
+    font-size: 3rem;
+    color: $white;
+    text-transform: uppercase;
+    span {
+        color: $blue;
+        text-transform: uppercase;
+    }
+}

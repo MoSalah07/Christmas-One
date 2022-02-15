@@ -1,0 +1,23 @@
+
+@media (min-width: 1200px) {
+    section {
+        padding: 3rem 9%;
+    }
+    .header {
+        padding: 1.5rem 9%;
+    }
+}
+
+@media (max-width: 1199px) {
+    section {
+        padding: 3rem 2rem;
+    }
+    .header {
+        padding: 1.5rem 2rem;
+    }
+
+    .about {
+        text-align: center;
+    }
+}
+

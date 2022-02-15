@@ -1,0 +1,28 @@
+
+@media (min-width: 768px) {
+    
+}
+
+
+@media (max-width: 767px) {
+    .blogs {
+        .box-container {
+            grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)) !important;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .footer {
+        .box-container {
+            > div { justify-self: center;}
+        }
+    }
+}
+
+
+@media (max-width: 449px) {
+    html {
+        font-size: 50%;
+    }
+}

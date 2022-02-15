@@ -1,0 +1,62 @@
+@use '../variables';
+
+
+@media (min-width: 992px) {
+    html {
+        font-size: 62.5%;
+    }
+    .header {
+        .navbar {
+            a {
+                margin: 0 1rem;
+            }
+        }
+        #menu-btn {
+            display: none;
+        }
+    }
+    .home {
+        .cloud-1 {
+            top: 20rem;
+        }
+        .moon { width: 30vw; z-index: 1;}
+    }    
+}
+
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+    .header {
+        .navbar {
+            position: absolute;
+            top: 99%; left: 0; right: 0;
+            background-color: variables.$black;
+            border-top: variables.$border;
+            border-bottom: variables.$border;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            &.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            a {
+                display: block;
+                margin: 2rem;
+            }
+        }
+        #menu-btn {
+            display: inline-block;
+        }
+    }
+    .home {
+        .content {
+            p { font-size: 2rem !important;}
+            h3 { font-size: 3rem !important;}
+        }
+        .cloud-1 {
+            top: 10%;
+        }
+        .moon { width: 20rem; z-index: 0;}
+    }
+}
+
+

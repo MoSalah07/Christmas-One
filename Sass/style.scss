@@ -1,0 +1,536 @@
+@use './variables';
+@use './Media/media-xlarge';
+@use './Media/media-medium';
+@use './Media/media.small';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap');
+
+
+// ======================================================== Start Global Rules
+
+*{
+   font-family: 'Nunito', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+//    outline: none; border:none;
+//    text-decoration: none;
+//    transition: all .2s linear;
+}
+
+a { text-decoration: none;}
+ul { list-style: none;}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 8rem;
+    &::-webkit-scrollbar { width: 1rem;}
+    &::-webkit-scrollbar-track { background-color: variables.$black;}
+    &::-webkit-scrollbar-thumb { background-color: variables.$blue;}
+    // overflow-x: hidden;
+}
+
+body {
+    background-color: variables.$black;
+    overflow-x: hidden;
+}
+
+
+
+
+// ======================================================== End Global Rules =========================================
+// ======================================================== Start Mixins  =========================================
+@mixin flex ($just, $align) {
+    display: flex;
+    justify-content: $just;
+    align-items: $align;
+}
+
+@mixin title-text($fontSize) {
+    font-size: $fontSize;
+    text-transform: capitalize;
+    color: variables.$white;
+}
+
+@mixin graph-text($fontGraph) {
+    font-size: $fontGraph;
+    text-transform: capitalize;
+    color: variables.$light-color;
+    padding: 1.5rem 0;
+    line-height: 2;
+}
+
+@mixin grid ($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 2rem;
+}
+
+// ======================================================== End Mixins  =========================================
+// ======================================================== Start Header  =========================================
+.header {
+    position: fixed;
+    inset: 0;
+    // left: 0; top: 0; right: 0;
+    z-index: 100;
+    @include flex(space-between, center);
+    border-bottom: variables.$border;
+    height: 10vh;
+    transition: variables.$transition;
+    transform: translateY(-20rem);
+    &.active {
+        transform: translateY(0rem);
+    }
+    .logo {
+        @include title-text(2.5rem);
+    }
+    .navbar {
+        transition: variables.$transition;
+        a.links {
+            @include title-text(2rem);
+            transition: variables.$transition;
+            &:hover {
+                color: variables.$blue;
+            }
+        }
+    }
+    .icons div,
+    .icons a {
+        height: 4.5rem;
+        width: 4.5rem;
+        line-height: 4.5rem;
+        background-color: variables.$white;
+        color: variables.$black;
+        margin-left: .5rem;
+        transition: variables.$transition;
+        text-align: center;
+        font-size: 2rem;
+        cursor: pointer;
+        &:hover {
+            background-color: variables.$blue;
+            color: variables.$white;
+        }
+    }
+    .icons {
+        #search-btn {
+            transition: variables.$transition;
+        }
+    }
+    .search-from {
+        position: absolute;
+        top: 99%; left: 0; right: 0;
+        background-color: variables.$black;
+        @include flex(stretch, center);
+        border-top: variables.$border;
+        border-bottom: variables.$border;
+        padding: 0 9%;
+        height: 6rem;
+        color: variables.$white;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: variables.$transition;
+        &.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        #search-box {
+            width: 100%;
+            background-color: transparent;
+            font-size: 1.8rem;
+            border: none;
+            outline: none;
+            color: variables.$white;
+        }
+        label {
+            font-size: 2.5rem;
+            transition: variables.$transition;
+            cursor: pointer;
+            &:hover {
+                color: variables.$blue;
+            }
+        }
+    }
+}
+// ======================================================== End  Header  =========================================
+// ======================================================== Start Home  =========================================
+.home {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    background-image: url('../images/home-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    .content {
+        position: absolute;
+        bottom: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+        p {
+            @include title-text(3rem);
+            text-transform: uppercase;
+            text-shadow: 0 .5rem 1rem rgba(0 0 0 / .7);
+        }
+        h3 {
+            @include title-text(10rem);
+            text-transform: uppercase;
+            text-shadow: 0 .5rem 1rem rgba(0 0 0 / .7);
+        }
+    }
+    > img {
+        transition: variables.$transition;
+    }
+    .tree {
+        position: absolute;
+        bottom: 0; left: 0;
+        z-index: 10;
+        height: 20rem;
+        width: 100%;
+        object-fit: cover;
+    }
+    .mount {
+        position: absolute;
+        bottom: 0; left: 0;
+        z-index: 10;
+        height: 40rem;
+        width: 100%;
+        object-fit: cover;
+        z-index: 5;
+    }
+    .moon {
+        position: absolute;
+        top: 20rem; left: 50%;
+        transform: translateX(-50%);
+    }
+    .cloud-1 {
+        position: absolute;
+        left: 0;
+        width: 60vw;
+        z-index: 2;
+    }
+    .cloud-2 {
+        position: absolute;
+        top: 5rem; right: 0;
+        width: 60vw;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        height: 5rem;
+        background-image: linear-gradient(transparent, variables.$black);
+        z-index: 12;
+    }
+}
+// ======================================================== End Home  =========================================
+// ======================================================== Start About =========================================
+.about {
+    @include flex(stretch, center);
+    flex-wrap: wrap;
+    gap: 3rem;
+    .image {
+        flex: 1 1 42rem;
+        img {
+            width: 100%;
+        }
+    }
+    .content {
+        flex: 1 1 42rem;
+        text-transform: capitalize;
+        span {
+            font-size: 2rem;
+            color: variables.$blue;
+        }
+        h3 {
+            @include title-text(2.5rem);
+            padding-top: 1.5rem;
+        }
+        p {
+            @include graph-text(1.6rem)
+        }
+    }
+}
+// ======================================================== End About  =========================================
+// ======================================================== Start Products ====================================
+.products {
+    .box-container {
+        @include grid(400px);
+        .box {
+            text-align: center;
+            &:hover .image {
+                img {
+                    transform: scale(1.1);
+                }
+                .icons { transform: translateY(0);}
+            }
+            .image {
+                height: 30rem;
+                position: relative;
+                overflow: hidden;
+                img {
+                    height: 100%;
+                    transition: variables.$transition;
+                }
+                .icons {
+                    position: absolute;
+                    top: 0; left: 0;
+                    height: 100%;
+                    width: 100%;
+                    transform: translateY(-100%);
+                    transition: variables.$transition;
+                    background-color: rgba(0 0 0 / .7);
+                    @include flex(center, center);
+                    gap: .5rem;
+                    a {
+                        height: 5rem;
+                        width: 5rem;
+                        line-height: 5rem;
+                        font-size: 2rem;
+                        background-color: variables.$white;
+                        color: variables.$black;
+                        transition: variables.$transition;
+                        &:hover {
+                            background-color: variables.$blue;
+                            color: variables.$white ;
+                        }
+                    }
+                }
+            }
+            .content {
+                padding: 1.5rem 0;
+                .stars {
+                    padding-bottom: .5rem;
+                    i { font-size: 1.7rem; color: variables.$blue;}
+                }
+                h3 {
+                    padding: 1rem 0;
+                    @include title-text(2rem);
+                }
+                .price {
+                    font-size: 2rem;
+                    color: variables.$white;
+                    span {
+                    color: variables.$light-color;
+                    font-size: 1.5rem;
+                    text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 400px) {
+        .box-container {
+            @include grid(100%);
+        }
+    }
+}
+// ======================================================== End Products ====================================
+// ======================================================== Start Services ==================================
+.services {
+    .box-container {
+        @include grid(400px);
+        .box {
+            text-align: center;
+            padding: 3rem;
+            &:nth-child(even) { 
+                background-color: variables.$light-bg;
+                border-radius: .5rem;
+            }
+            &:hover i { transform: translateY(1rem);}
+            i {
+                height: 6rem;
+                width: 6rem;
+                line-height: 6rem;
+                border-radius: 50%;
+                font-size: 2rem;
+                color: variables.$white;
+                background-color: variables.$blue;
+                margin-bottom: 1.5rem;
+                transition: variables.$transition;
+            }
+            h3 {
+                @include title-text(2rem);
+            }
+            p {
+                @include graph-text(1.5rem);
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+// ======================================================== End Services ====================================
+// ======================================================== Start Gallery ====================================
+.gallery {
+    .box-container {
+        columns: 40rem 3;
+        gap: 1.5rem;
+        img {
+            width: 100%;
+            border-radius: .5rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+    @media (max-width: 991px) { .box-container { columns: 10rem 3;}}
+}
+// ======================================================== End Gallery ====================================
+// ======================================================== Start Contact ==================================
+.contact {
+    form {
+        margin: 1rem auto;
+        max-width: 60rem;
+        text-align: center;
+        h3 {
+            @include title-text(3rem);
+        }
+        .box {
+            width: 100%;
+            padding: 1.5rem 0;
+            margin-bottom: 1rem;
+            color: variables.$white;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            border-bottom: variables.$border;
+            font-size: 1.8rem;
+            transition: variables.$transition;
+            &:focus {
+                border-color: variables.$blue;
+            }
+        }
+        textarea {
+            height: 15rem;
+            resize: none;
+        }
+    }
+}
+// ======================================================== End Contact ====================================
+// ======================================================== Start Blogs ====================================
+.blogs {
+    .box-container {
+        @include grid(300px);
+        overflow: hidden;
+        .box {
+            text-align: center;
+            transition: variables.$transition;
+            &:hover {
+                .images img {
+                    transform: scale(1.1);
+                }
+            }
+            .images {
+                height: 25rem;
+                overflow: hidden;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    transition: variables.$transition;
+                }
+            }
+            @media (max-width: 991px) {
+                // .images { height: 20rem;}
+            }
+            .content {
+                padding-top: 2rem;
+                h3 {
+                    @include title-text(2rem);
+                }
+                p {
+                    @include graph-text(1.6rem);
+                    padding: 1rem 2rem;
+                }
+                .icons {
+                    @include flex(space-between,  center);
+                    padding: 2rem;
+                    background-color: variables.$light-bg;
+                    margin-top: 2rem;
+                    a {
+                        font-size: 1.6rem;
+                        color: variables.$white;
+                        transition: variables.$transition;
+                        &:hover {
+                            color: variables.$blue;
+                        }
+                        i {
+                            color: variables.$blue;
+                            padding-right: .5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// ======================================================== End Blogs ====================================
+// ======================================================== Start Footer ==================================
+.footer {
+    background-color: variables.$light-bg;
+    .box-container {
+        @include grid(25rem);
+        .box {
+            h3 {
+                @include title-text(2.2rem);
+                padding: 1rem 0 2rem;
+            }
+            .link {
+                display: block;
+                color: variables.$light-color;
+                transition: variables.$transition;
+                padding: 1rem 0;
+                font-size: 1.5rem;
+                &:hover {
+                color: variables.$blue;
+                i {
+                    padding-right: 2rem;
+                }
+                }
+                i {
+                color: variables.$blue;
+                transition: variables.$transition;
+                padding-right: .5rem;
+                }
+            }
+            .email {
+                width: 100%;
+                padding: 1.2rem 1.4rem;
+                border: variables.$border;
+                color: variables.$white;
+                margin: 1rem 0;
+                background: none;
+                font-size: 1.6rem;
+            }
+            .btn { outline: none; border: none; cursor: pointer;}
+            .share {
+                padding-bottom: 2rem;
+                margin-top: 1rem;
+                a {
+                    height: 4.5rem;
+                    width: 4.5rem;
+                    line-height: 4.5rem;
+                    text-align: center;
+                    font-size: 2rem;
+                    background-color: variables.$white;
+                    color: variables.$black;
+                    transition: variables.$transition;
+                    margin-right: .5rem;
+                    &:hover {
+                        background-color: variables.$blue;
+                        color: variables.$white;
+                    }
+                }
+            }
+        }
+    }
+    .credit {
+        text-align: center;
+        @include title-text(2rem);
+        padding-top: 1rem;
+        margin-top: 3rem;
+        border-top: variables.$border;
+        span {
+            color: variables.$blue;
+        }
+    }
+}
+// ======================================================== End Footer ====================================
+
